@@ -20,6 +20,7 @@ class CandidatesController extends Controller
 
     public function votingPage()
     {
-        return view('voting');
+        $candidates = DB::table('candidates')->get();
+        return view('voting', ['candidates' => $candidates]);
     }
 }
