@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CandidatesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,8 @@ Route::get('/home', function () {
 Route::get('/createCandidateForm', function () {
     return view('createCandidateForm');
 });
+
+Route::post('/createCandidate', [CandidatesController::class, 'createCandidate'])->name('createCandidate');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
