@@ -2,6 +2,7 @@
 @section('content')
     <div class="container">
         <form action="{{ route('createCandidate') }}" method="post">
+            {{ csrf_field() }}
             <div class="form-group mb-3">
                 <label for="">Candidate Name</label>
                 <input type="text" name="candidateName" class="form-control" placeholder="Type the name of the candidate">
