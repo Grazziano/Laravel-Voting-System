@@ -26,6 +26,7 @@ Route::get('/createCandidateForm', function () {
     return view('createCandidateForm');
 });
 
+Route::get('/voting', [CandidatesController::class, 'votingPage'])->name('votingPage');
 Route::post('/createCandidate', [CandidatesController::class, 'createCandidate'])->name('createCandidate');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

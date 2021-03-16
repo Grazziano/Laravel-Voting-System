@@ -17,4 +17,9 @@ class CandidatesController extends Controller
 
         return \view('createCandidateForm');
     }
+
+    public function votingPage()
+    {
+        return view('voting');
+    }
 }
