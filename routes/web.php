@@ -21,6 +21,10 @@ Route::get('/home', function () {
     return view('home');
 });
 
+Route::get('/createCandidateForm', function () {
+    return view('createCandidateForm');
+});
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
