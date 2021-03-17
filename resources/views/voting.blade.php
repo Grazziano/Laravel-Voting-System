@@ -6,7 +6,8 @@
         }
     </style>
     <div class="container">
-        <form action="">
+        <form action="{{ route('castYourVote') }}" method="post">
+            {{ csrf_field() }}
             <fieldset class="form-group text-center">
                 <div class="row">
                     <div class="col-sm-10" style="margin: 0 auto">
@@ -15,9 +16,9 @@
 
                         @foreach ($candidates as $candidate)
                             <div class="form-check mb-5 mt-3">
-                                <input class="form-check-input" type="radio" name="candidateName" id="candidateName"
+                                <input class="form-check-input" type="radio" name="candidateId" id="candidateId"
                                     value="{{ $candidate->id }}">
-                                <label class="form-check-label" for="candidateName">
+                                <label class="form-check-label" for="candidateId">
                                     {{ $candidate->name }}
                                 </label>
                             </div>
@@ -25,7 +26,7 @@
 
                         <div class="form-group row">
                             <div class="col-sm-10 d-grid gap-2" style="margin: 0 auto">
-                                <button type="submit" class="btn btn-block btn-primary">Vote</button>
+                                <button type="submit" class="btn btn-primary">Vote</button>
                             </div>
                         </div>
 

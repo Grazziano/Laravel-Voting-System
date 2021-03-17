@@ -23,4 +23,15 @@ class CandidatesController extends Controller
         $candidates = DB::table('candidates')->get();
         return view('voting', ['candidates' => $candidates]);
     }
+
+    public function castYourVote(Request $request)
+    {
+        $candidateId = $request->input('candidateId');
+
+        DB::table('candidates')->where('id', $candidateId)->update([
+            'votes' => DB::raw("votes +1")
+        ]);
+
+        return view('home');
+    }
 }
