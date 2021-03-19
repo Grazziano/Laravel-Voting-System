@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\DB;
 
 class CandidatesController extends Controller
 {
+    public function home()
+    {
+        $candidates = DB::table('candidates')->get();
+        return view('home', ['candidates' => $candidates]);
+    }
+
     public function createCandidate(Request $request)
     {
         $candidateName = $request->input('candidateName');
