@@ -27,7 +27,11 @@ class CandidatesController extends Controller
 
     public function createCandidateForm()
     {
-        return view('createCandidateForm');
+        if (Auth::check() && Auth::user()->is_admin) {
+            return view('createCandidateForm');
+        } else {
+            return \redirect('/')->with('flashMessageProblem', 'You are not autorized to enter this page!');
+        }
     }
 
     public function votingPage()
