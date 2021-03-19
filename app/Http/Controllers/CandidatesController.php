@@ -32,8 +32,11 @@ class CandidatesController extends Controller
 
     public function votingPage()
     {
-        //check if user has already voted for
-        if (!Auth::user()->has_voted) {
+        // if user is not logged in then send them to register
+        if (!Auth::check()) {
+            return \redirect('/register');
+            //check if user has already voted for
+        } else if (!Auth::user()->has_voted) {
             $candidates = DB::table('candidates')->get();
             return view('voting', ['candidates' => $candidates]);
         } else {
