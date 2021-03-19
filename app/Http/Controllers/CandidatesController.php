@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CandidatesController extends Controller
@@ -20,8 +21,14 @@ class CandidatesController extends Controller
 
     public function votingPage()
     {
-        $candidates = DB::table('candidates')->get();
-        return view('voting', ['candidates' => $candidates]);
+        //check if user has already voted for
+        if (!Auth::user()->has_voted) {
+            $candidates = DB::table('candidates')->get();
+            return view('voting', ['candidates' => $candidates]);
+        } else {
+            // user already voted for
+            return view('home');
+        }
     }
 
     public function castYourVote(Request $request)
@@ -30,6 +37,11 @@ class CandidatesController extends Controller
 
         DB::table('candidates')->where('id', $candidateId)->update([
             'votes' => DB::raw("votes +1")
+        ]);
+
+        // change the has_voted value from 0 to 1
+        DB::table('users')->where('id', Auth::user()->id)->update([
+            'has_voted' => 1
         ]);
 
         return view('home');
