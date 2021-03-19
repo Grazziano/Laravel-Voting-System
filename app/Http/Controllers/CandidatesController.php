@@ -19,6 +19,11 @@ class CandidatesController extends Controller
         return \view('createCandidateForm');
     }
 
+    public function createCandidateForm()
+    {
+        return view('createCandidateForm');
+    }
+
     public function votingPage()
     {
         //check if user has already voted for
@@ -27,7 +32,7 @@ class CandidatesController extends Controller
             return view('voting', ['candidates' => $candidates]);
         } else {
             // user already voted for
-            return \redirect('home')->with('flashMessageProblem', 'You have already voted');
+            return \redirect('/')->with('flashMessageProblem', 'You have already voted');
         }
     }
 
@@ -45,6 +50,6 @@ class CandidatesController extends Controller
         ]);
 
         // return but with a message
-        return \redirect('home')->with('flashMessage', 'You voted successfully. Results will be available on Sunday');
+        return \redirect('/')->with('flashMessage', 'You voted successfully. Results will be available on Sunday');
     }
 }

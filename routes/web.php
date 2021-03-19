@@ -16,16 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-});
-
-Route::get('/home', function () {
-    return view('home');
 })->name('home');
 
-Route::get('/createCandidateForm', function () {
-    return view('createCandidateForm');
-});
-
+Route::get('/createCandidateForm', [CandidatesController::class, 'createCandidateForm'])->name('createCandidateForm');
 Route::get('/voting', [CandidatesController::class, 'votingPage'])->name('votingPage');
 Route::post('/createCandidate', [CandidatesController::class, 'createCandidate'])->name('createCandidate');
 Route::post('/castYourVote', [CandidatesController::class, 'castYourVote'])->name('castYourVote');
