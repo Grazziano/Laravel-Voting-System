@@ -44,6 +44,8 @@ class CandidatesController extends Controller
             'has_voted' => 1
         ]);
 
-        return view('home');
+        // return but with a message
+        // return view('home');
+        return \redirect('home')->with('flashMessage', 'You voted successfully. Results will be available on Sunday');
     }
 }
