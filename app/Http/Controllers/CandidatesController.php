@@ -27,7 +27,7 @@ class CandidatesController extends Controller
             return view('voting', ['candidates' => $candidates]);
         } else {
             // user already voted for
-            return view('home');
+            return \redirect('home')->with('flashMessageProblem', 'You have already voted');
         }
     }
 
@@ -45,7 +45,6 @@ class CandidatesController extends Controller
         ]);
 
         // return but with a message
-        // return view('home');
         return \redirect('home')->with('flashMessage', 'You voted successfully. Results will be available on Sunday');
     }
 }
