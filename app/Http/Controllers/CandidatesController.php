@@ -43,6 +43,8 @@ class CandidatesController extends Controller
         } else if (!Auth::user()->has_voted) {
             $candidates = DB::table('candidates')->get();
             return view('voting', ['candidates' => $candidates]);
+        } else if (now() > date('2021-11-11 00:00:00')) {
+            return \redirect('/')->with('flashMessageProblem', 'You can no longer vote. Polls closed!');
         } else {
             // user already voted for
             return \redirect('/')->with('flashMessageProblem', 'You have already voted');
