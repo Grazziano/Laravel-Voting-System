@@ -18,7 +18,7 @@ Route::get('/', [CandidatesController::class, 'home'])->name('home');
 Route::get('/createCandidateForm', [CandidatesController::class, 'createCandidateForm'])->name('createCandidateForm');
 Route::get('/voting', [CandidatesController::class, 'votingPage'])->name('votingPage');
 Route::post('/createCandidate', [CandidatesController::class, 'createCandidate'])->name('createCandidate');
-Route::post('/castYourVote', [CandidatesController::class, 'castYourVote'])->name('castYourVote');
+Route::post('/castYourVote', [CandidatesController::class, 'castYourVote'])->name('castYourVote')->middleware('auth');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
