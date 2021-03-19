@@ -58,6 +58,11 @@ class CandidatesController extends Controller
             'has_voted' => 1
         ]);
 
+        // store which candidate user voted for
+        DB::table('users')->where('id', Auth::user()->id)->update([
+            'candidate_voted_for' => $candidateId
+        ]);
+
         // return but with a message
         return \redirect('/')->with('flashMessage', 'You voted successfully. Results will be available on Sunday');
     }
