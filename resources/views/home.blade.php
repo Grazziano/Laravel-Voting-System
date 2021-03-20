@@ -14,6 +14,8 @@
                         <p>{{ $candidate->information }}</p>
                     </details>
 
+                    <h3 class="text-center"><span class="badge bg-success">{{ ($candidate->votes / 10000) * 100 }}%</span></h3>
+
                     <div class="progress">
                         <div class="progress-bar" role="progressbar" style="width: {{ ($candidate->votes / 10000) * 100 }}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="10000">{{ ($candidate->votes / 10000) * 100 }}%</div>
                     </div>
