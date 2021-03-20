@@ -31,6 +31,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('dashboard') }}">Profile</a>
                     </li>
+                    @if (Auth::check() && Auth::user()->is_admin)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('createCandidateForm') }}">Create Candidate</a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>
