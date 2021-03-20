@@ -17,12 +17,21 @@ class CandidatesController extends Controller
     public function createCandidate(Request $request)
     {
         $candidateName = $request->input('candidateName');
+        $candidateInfo = $request->input('candidateInfo');
+
+        if ($candidateInfo == null) {
+            $candidateInfo = "";
+        }
 
         DB::table('candidates')->insert(
-            ['name' => $candidateName, 'votes' => 0]
+            [
+                'name' => $candidateName,
+                'votes' => 0,
+                'information' => $candidateInfo
+            ]
         );
 
-        return \view('createCandidateForm');
+        return redirect('createCandidateForm');
     }
 
     public function createCandidateForm()
